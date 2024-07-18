@@ -8,4 +8,12 @@ export const postService = {
     const data = await response.json();
     return data;
   },
+
+  getPost: async (id: number): Promise<Post> => {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/posts/${id}`,
+    );
+    const data = await response.json();
+    return data;
+  },
 };
