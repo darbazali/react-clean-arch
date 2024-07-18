@@ -20,5 +20,5 @@ export const useGetPosts = () => {
     })();
   }, []);
 
-  return { loading, error, posts: data };
+  return { loading, error, posts: data.slice(0, 10) };
 };
