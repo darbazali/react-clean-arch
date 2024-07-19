@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Post } from "../../../core/models/Post";
-import { postService } from "../services/postService";
+import postService from "../services/postService";
 
 export const useGetPost = (id: number) => {
   const [loading, setLoading] = useState(true);

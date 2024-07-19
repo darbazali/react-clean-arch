@@ -1,7 +1,7 @@
 import { authorizedFetch } from "../../../adapters/authorizedFetch";
 import { Post } from "../../../core/models/Post";
 
-export const postService = {
+const postService = {
   getPosts: async (): Promise<Post[]> => {
     const response = await authorizedFetch(
       "https://jsonplaceholder.typicode.com/posts?limit=10",
@@ -33,3 +33,5 @@ export const postService = {
     return data;
   },
 };
+
+export default postService;

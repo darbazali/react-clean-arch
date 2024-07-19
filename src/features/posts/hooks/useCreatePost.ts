@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Post } from "../../../core/models/Post";
-import { postService } from "../services/postService";
+import postService from "../services/postService";
 
 export const useCreatePost = () => {
   const [loading, setLoading] = useState(false);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { postService } from "../services/postService";
+import postService from "../services/postService";
 import { Post } from "../../../core/models/Post";
 
 export const useGetPosts = () => {
