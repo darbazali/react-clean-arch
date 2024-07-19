@@ -1,4 +1,4 @@
-import { authorizedFetch } from "../../../app/fetchInstance";
+import { authorizedFetch } from "../../../adapters/authorizedFetch";
 import { Post } from "../../../core/models/Post";
 
 export const postService = {
