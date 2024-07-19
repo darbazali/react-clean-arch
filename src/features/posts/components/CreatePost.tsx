@@ -1,10 +1,10 @@
 import React from "react";
 import { useCreatePost } from "../hooks/useCreatePost";
+import Button from "../../../components/Button";
 
 const CreatePost: React.FC = (): JSX.Element => {
   const { createPost, loading, error } = useCreatePost();
 
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>Error</div>;
 
   const newPost = {
@@ -14,9 +14,15 @@ const CreatePost: React.FC = (): JSX.Element => {
     id: 0,
   };
 
+  const handleCreatePost = () => {
+    createPost(newPost);
+  };
+
   return (
     <div>
-      <button onClick={() => createPost(newPost)}>Add new post</button>
+      <Button loading={loading} onClick={handleCreatePost}>
+        Add new post
+      </Button>
     </div>
   );
 };
