@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Post } from "../../../core/models/Post";
 import postService from "../services/postService";
 
-export const useCreatePost = () => {
+interface Return {
+  loading: boolean;
+  error: boolean;
+  createPost: (post: Post) => Promise<void>;
+}
+
+export const useCreatePost = (): Return => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
