@@ -1,24 +1,8 @@
-import { useEffect, useState } from "react";
 import postService from "../services/postService";
-import { Post } from "../../../core/models/Post";
+import useSWR from "swr";
 
 export const useGetPosts = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState<Post[]>([]);
+  const { data, isLoading, error } = useSWR("/posts", postService.getPosts);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await postService.getPosts();
-        setData(data);
-        setLoading(false);
-      } catch (error) {
-        setError(true);
-        setLoading(false);
-      }
-    })();
-  }, []);
-
-  return { loading, error, posts: data.slice(0, 10) };
+  return { loading: isLoading, error, posts: data?.slice(0, 10) };
 };
