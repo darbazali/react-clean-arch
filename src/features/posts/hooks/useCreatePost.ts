@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { Post } from "../../../core/models/Post";
 import postService from "../services/postService";
+import useSWR from "swr";
 
 interface Return {
   loading: boolean;
@@ -9,19 +9,13 @@ interface Return {
 }
 
 export const useCreatePost = (): Return => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const { error, mutate, isLoading } = useSWR({
+    fallbackData: [],
+  });
 
   const createPost = async (post: Post) => {
-    try {
-      setLoading(true);
-      await postService.createPost(post);
-      setLoading(false);
-    } catch (error) {
-      setError(true);
-      setLoading(false);
-    }
+    await mutate(postService.createPost(post));
   };
 
-  return { loading, error, createPost };
+  return { loading: isLoading, error, createPost };
 };
