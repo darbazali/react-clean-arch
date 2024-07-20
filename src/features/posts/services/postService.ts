@@ -1,36 +1,43 @@
-import { authorizedFetch } from "../../../adapters/authorizedFetch";
+import { apiAgent } from "../../../adapters/apiAgent";
 import { Post } from "../../../core/models/Post";
 
 const postService = {
-  getPosts: async (): Promise<Post[]> => {
-    const response = await authorizedFetch(
-      "https://jsonplaceholder.typicode.com/posts?limit=10",
-    );
-    const data = await response.json();
+  /**
+   * Fetches a list of the latest 10 posts
+   */
+  getPosts: async (): Promise<Array<Post>> => {
+    const { data } = await apiAgent.get<Array<Post>>("/posts?limit=10");
+
     return data;
   },
 
+  /**
+   * Fetches a single post by its ID.
+   *
+   * @param id - The ID of the post to fetch.
+   * @returns A Promise that resolves to the fetched Post object.
+   */
   getPost: async (id: number): Promise<Post> => {
-    const response = await authorizedFetch(
-      `https://jsonplaceholder.typicode.com/posts/${id}`,
-    );
-    const data = await response.json();
-    return data;
+    const response: Promise<{ data: Post }> = apiAgent.get<
+      unknown,
+      { data: Post }
+    >(`/posts/${id}`);
+
+    return response.then((res) => res.data);
   },
 
-  createPost: async (post: Post): Promise<Post> => {
-    const response = await authorizedFetch(
-      "https://jsonplaceholder.typicode.com/posts",
-      {
-        method: "POST",
-        body: JSON.stringify(post),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      },
-    );
-    const data = await response.json();
-    return data;
+  /**
+   * Creates a new post.
+   *
+   * @param {Post} newPost - The post to be created.
+   * @returns {Promise<Post>} A promise that resolves to the created post.
+   */
+  async createPost(newPost: Post): Promise<Post> {
+    const response = await apiAgent.post<Post, { data: Post }>("/posts", {
+      data: newPost,
+    });
+
+    return response.data;
   },
 };
 
