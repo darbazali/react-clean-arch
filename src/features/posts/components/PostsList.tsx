@@ -2,7 +2,7 @@ import { useGetPosts } from "../hooks/useGetPosts";
 import Post from "./Post";
 
 const PostsList: React.FC = (): JSX.Element => {
-  const { posts, loading, error } = useGetPosts();
+  const { posts = [], loading, error } = useGetPosts();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error</div>;
