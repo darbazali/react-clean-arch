@@ -1,4 +1,4 @@
-import { apiAgent } from "../../../adapters/apiAgent";
+import { apiAgent } from "../../../adapters/api/apiAgent";
 import { Todo } from "../../../core/models/Todo";
 
 const todoService = {
