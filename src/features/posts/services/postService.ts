@@ -1,4 +1,4 @@
-import { apiAgent } from "../../../adapters/apiAgent";
+import { apiAgent } from "../../../adapters/api/apiAgent";
 import { Post } from "../../../core/models/Post";
 
 const postService = {

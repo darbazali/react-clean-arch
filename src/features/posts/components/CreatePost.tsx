@@ -1,6 +1,6 @@
 import React from "react";
 import { useCreatePost } from "../hooks/useCreatePost";
-import Button from "../../../components/Button";
+import Button from "../../../components/common/Button";
 
 const CreatePost: React.FC = (): JSX.Element => {
   const { createPost, loading, error } = useCreatePost();

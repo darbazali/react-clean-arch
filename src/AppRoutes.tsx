@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CreatePost from "../features/posts/components/CreatePost";
-import PostsList from "../features/posts/components/PostsList";
-import SinglePost from "../features/posts/components/SinglePost";
-import TodosList from "../features/todos/components/TodosList";
+import CreatePost from "./features/posts/components/CreatePost";
+import PostsList from "./features/posts/components/PostsList";
+import SinglePost from "./features/posts/components/SinglePost";
+import TodosList from "./features/todos/components/TodosList";
 
 const AppRoutes = () => {
   return (
